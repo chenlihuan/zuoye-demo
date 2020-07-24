@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="todo.css" />
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <section>
+            <label class="title">ToDoList</label>
+            <input type="text" id="title" name="title" placeholder="添加ToDo" required="required" autocomplete="off" />
+        </section>
+    </header>
+    <section>
+        <h2>正在进行<span id="todocount"></span></h2>
+        <ol id="todolist" class="demo-box">
+
+        </ol>
+        <h2>已近完成<span id="donecount"></span></h2>
+        <ul id="donelist">
+
+        </ul>
+    </section>
+
+</body>
+<script>
+    $(function () {
+        load();
+        $("#title").on("keydown", function (e) {            
+            if (e.keyCode === 13) {
+                if($(this).val() === ""){
+                    alert("请输入您要的操作")
+                }else{
+                     //先读取本地存储的数据
+                var local = getDate();
+                console.log(local);
+                //把local数组进行更新数据，把最新的数据追加给local数组
+                local.push({
+                    title: $(this).val(),
+                    done: false
+                });
+                saveDate(local);
+                load();
+                $(this).val('');
+                }               
+            }
+        });
+        //删除操作
+        $("ol, ul").on("click", "a", function () {
+            //先获取本地存储的数据
+            var data = getDate();
+            //修改数据
+            var index = $(this).attr("id");
+            data.splice(index, 1);
+            saveDate(data);
+            load()
+        });
+
+        // 4， toDolist正在进行和已完成选项操作
+        $("ul, ol").on("click", "input", function () {
+            var data = getDate();
+             // 修改数据
+            var index = $(this).siblings("a").attr("id");
+            data[index].done = $(this).prop("checked");
+            saveDate(data);
+            load()
+        });
+        //读取本地存储的数据
+        function getDate() {
+            var data = localStorage.getItem("todolist");
+            if (data !== null) {
+                return JSON.parse(data);
+            } else {
+                return [];
+            }
+
+        }
+        //保存本地数据
+        function saveDate(data) {
+            localStorage.setItem("todolist", JSON.stringify(data))
+        }
+        //渲染加载数据
+        function load() {
+            //先读取本地数据
+            var data = getDate();
+            $('ol, ul').empty();
+            var todoCount = 0;
+            var doneCount = 0;
+            $.each(data, function (i, n) {
+                if (n.done) {
+                    $("ul").prepend("<li><input type='checkbox' checked='checked' > <p>" + n.title +
+                        "</p> <a href='javascript:;' id=" + i + " ></a></li>");
+                    doneCount ++;
+                } else {
+                    $("ol").prepend("<li><input type='checkbox'><p> " + n.title +
+                        " </p> <a href='javascript:;' id=" + i + "></a ></li>");
+                    todoCount ++;
+                }
+
+            })
+            $("#todocount").text(todoCount);
+            $("#donecount").text(doneCount);
+        }
+
+    })
+</script>
+
+</html>

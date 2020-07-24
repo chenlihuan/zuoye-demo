@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var arr = [2, 6, 1, 7, 4];
+        // var sum = 0;
+        // var average = 0;
+        // for (var i = 0; i < arr.length; i++) {
+        //     sum += arr[i]
+        // }
+        // average = sum / arr.length
+        // console.log(sum, average);
+
+
+        var arrs = [2, 6, 7, 8, 9, 10, 14, 80];
+        var max = arrs[0];
+        for (var i = 0; i < arrs.length; i++) {
+            if (arrs[i] > max) {
+                max = arrs[i]
+            }
+        }
+        console.log(max);
+
+        var str = ['red', 'green', 'blue', 'pink'];
+        var arrs = '';
+        var sep = '|';
+        for (var i = 0; i < str.length; i++) {
+            arrs += str[i] + sep;
+        }
+        console.log(arrs);
+
+        var arrsa = [];
+        for (var i = 0; i < 10; i++) {
+            arrsa[i] = i + 1;
+        }
+        console.log(arrsa)
+        //1
+        var arrasf = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        // var j = 0; //1 // 2 刚开始 newArr.length就是0
+        for (var i = 0; i < arrasf.length; i++) {
+            if (arrasf[i] > 10) {
+                //新数组索引号应该从0开始，依次累加
+                newArr[newArr.length] = arrasf[i];
+                // j++; //1
+            }
+        }
+        console.log(newArr)
+
+
+        var arrre = ['red', 'green', 'blue', 'pink', 'puple'];
+        var newArrre = [];
+        for (var i = arrre.length - 1; i >= 0; i--) {
+            newArrre[newArrre.length] = arrre[i]
+        }
+        console.log(newArrre)
+
+        //交换两个变量的
+        var num1 = 10;
+        var nnm2 = 20;
+        var temp; //临时变量
+        temp = num1;
+        num1 = nnm2;
+        nnm2 = temp;
+        console.log(num1, nnm2);
+
+        //数组排序(冒泡排序)
+        var fivearr = [5, 4, 3, 2, 1];
+        for (var i = 0; i <= fivearr.length - 1; i++) { //外层循环管趟数
+            for (j = 0; j <= fivearr.length - i - 1; j++) { //里层循环管，每一趟的交换次数
+                //内部交换2个变量的值，前一个和后面一个数组元素相比较
+                if (fivearr[j] > fivearr[j + 1]) {
+                    var temp = fivearr[j];
+                    fivearr[j] = fivearr[j + 1];
+                    fivearr[j + 1] = temp;
+                }
+            }
+        }
+        console.log(fivearr)
+    </script>
+
+</body>
+
+</html>

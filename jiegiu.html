@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let ary = [1, 2, 3];
+    let [a, b, c, d, e] = ary;
+    // console.log(a)
+    // console.log(b)
+    // console.log(c)
+    // console.log(d)
+    // console.log(e)
+    //=========================================
+    //对象解构
+    let person = {
+        name: 'lisi',
+        age: 30,
+        sex: '男'
+    };
+    // let {name,age,sex} = person;
+    //     console.log(name)
+    //     console.log(age)
+    //     console.log(sex)
+    let {
+        name: myName
+    } = person;
+    // console.log(myName)
+    //-----------------------------------------
+    //箭头函数
+    // const fn = () => {
+    //     console.log(123)
+    // }
+    // fn();
+    //在箭头函数中，如果函数体中只有一句代码，并且代码的执行结果就是 函数的返回值，函数体大括号可以省略
+    // const sum = (n1, n2) => {
+    //     return n1 + n2
+    // }
+    const sum = (n1, n2) => n1 + n2;
+    const result = sum(10, 20)
+    console.log(result)
+    // function fn(){
+    //     console.log(this);
+    //     return ()=> {
+    //         console.log(this)
+    //     }
+    // }
+</script>
+
+</html>

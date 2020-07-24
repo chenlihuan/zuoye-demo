@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>倒计时</title>
+    <style>
+      .box {
+        text-align: center;
+      }
+      span {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        line-height: 50px;
+        vertical-align: middle;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="hour">1</span>
+      <span class="feng">2</span>
+      <span class="miao">3</span>
+    </div>
+  </body>
+  <script>
+    var hs = document.querySelector(".hour");
+    var fs = document.querySelector(".feng");
+    var ms = document.querySelector(".miao");
+    var inputtime = +new Date("2020-6-10 18:10:00"); //用户输入的时间
+    //获取时间
+    coutdown();
+    setInterval(coutdown, 1000);
+
+    function coutdown() {
+      var data = +new Date(); //获取当前的时间系统的时间;
+      var times = Math.abs((inputtime - data) / 1000);
+      var h = parseInt((times / 60 / 60) % 24);
+      h = h < 10 ? "0" + h : h;
+      hs.innerHTML = h;
+      var m = parseInt((times / 60) % 60);
+      m = m < 10 ? "0" + m : m;
+      fs.innerHTML = m;
+      var s = parseInt(times % 60);
+      s = s < 10 ? "0" + s : s;
+      ms.innerHTML = s;
+    }
+  </script>
+</html>

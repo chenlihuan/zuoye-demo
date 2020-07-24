@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .loing {
+        text-align: center;
+      }
+
+      .box {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.2);
+        display: none;
+      }
+
+      .box-item {
+        height: 200px;
+        width: 400px;
+        display: none;
+        background-color: #fff;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99;
+      }
+
+      .title {
+        height: 40px;
+        line-height: 40px;
+        color: #ddd;
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 0 2px 2px outset;
+        position: relative;
+        cursor: move;
+      }
+
+      .close {
+        position: absolute;
+        right: 10px;
+        color: red;
+        cursor: pointer;
+      }
+
+      .item-content {
+        padding: 20px 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="loing">
+      点击，弹窗登录框
+    </div>
+    <div class="box-item">
+      <div class="title">
+        <div class="close">X</div>
+      </div>
+      <div class="item-content">
+        asddff
+      </div>
+    </div>
+    <div class="box"></div>
+  </body>
+  <script>
+    var loing = document.querySelector(".loing");
+    var sboxs = document.querySelector(".box");
+    var sbox = document.querySelector(".box-item");
+    var closes = document.querySelector(".close");
+    var movetitle = document.querySelector(".title");
+    loing.addEventListener("click", function() {
+      sbox.style.display = "block";
+      sboxs.style.display = "block";
+    });
+    closes.addEventListener("click", function() {
+      sbox.style.display = "none";
+      sboxs.style.display = "none";
+    });
+    //当按下鼠标时，就获得鼠标在盒子内的坐标值；
+    movetitle.addEventListener("mousedown", function(e) {
+      var x = e.pageX - sbox.offsetLeft;
+      var y = e.pageY - sbox.offsetTop;
+      //   document.addEventListener("mousemove", function(e) {
+      //     sbox.style.left = e.pageX - x + "px";
+      //     sbox.style.top = e.pageY - x + "px";
+      //   });
+      document.addEventListener("mousemove", move);
+      function move(e) {
+        sbox.style.left = e.pageX - x + "px";
+        sbox.style.top = e.pageY - y + "px";
+      }
+      document.addEventListener("mouseup", function() {
+        document.removeEventListener("mousemove", move);
+      });
+    });
+  </script>
+</html>
